@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
-import { userLogIn, userLogOut, 
-    deleteUser, editUser } from "../apis/UserApis"
+import { userLogIn, userLogOut } from "../apis/UserApis"
     import { Link } from "react-router-dom"
 
 export default function Home ({
@@ -16,16 +15,6 @@ export default function Home ({
         // console.log(localStorage.getItem("token"))
         userLogOut()
         setUserIsLoggedIn(false)
-    }
-
-    function deleteAccount(e) {
-        deleteUser()
-        setUserIsLoggedIn(false)
-    }
-
-    function editAccount(e) {
-        e.preventDefault()
-        editUser()
     }
 
     function check(e) {
@@ -55,6 +44,11 @@ export default function Home ({
         <br/>
         <br/>
 
+    <Link to="/myaccount">My Account</Link>
+
+        <br/>
+        <br/>
+
     <button onClick={logOut}>Log out</button>
 
         <br/>
@@ -65,55 +59,7 @@ export default function Home ({
         <br/>
         <br/>
 
-    <button onClick={deleteAccount}>Delete account</button>
 
-        <br/>
-        <br/>
-
-    <h3>Edit</h3>
-        {/* <form>
-        <label>Email</label>
-            <input 
-                name="email"
-                value={newUser.email}
-                onChange={handleNewUserInput}
-            />
-            
-            <br/>
-            <br/>
-
-            <label>First Name</label>
-            <input 
-                name="firstname"
-                value={newUser.firstname}
-                onChange={handleNewUserInput}
-            />
-
-            <br/>
-            <br/>            
-            
-            <label>Last Name</label>
-            <input 
-                name="lastname"
-                value={newUser.lastname}
-                onChange={handleNewUserInput}
-            />
-
-            <br/>
-            <br/>
-            <label>Password</label>
-            <input 
-                name="password"
-                value={newUser.password}
-                onChange={handleNewUserInput}
-            />
-
-            <br/>
-            <br/>
-
-            <button onClick={editAccount}>Submit</button>
-
-        </form> */}
         </>
     )
 }

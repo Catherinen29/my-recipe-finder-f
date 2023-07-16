@@ -39,6 +39,13 @@ export const userLogIn = (userInfo) => {
         .catch((e) => console.log(`This is the error: ${e}`))
 }
 
+export const getUser = (id) => {
+    const response = axiosInstance.get(`/users/${id}`)
+    .then((response) => console.log(response))
+    .catch(e => console.log(`This is the error: ${e}`))
+
+}
+
 export const userLogOut = () => {
     const response = axiosInstanceHeader.delete("/logout")
     .then((response) => console.log(response))

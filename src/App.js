@@ -2,6 +2,7 @@
 import './App.css';
 import Home from './components/Home';
 import Login from './components/Login';
+import MyAccount from './components/MyAccount';
 import { Routes, Route } from "react-router-dom";
 import { useState } from 'react';
 import Signup from './components/Signup';
@@ -26,7 +27,11 @@ const currentUser = () => {
           />} />
         <Route path="/login" element={<Login 
             setUserIsLoggedIn={setUserIsLoggedIn}/>} />
+
         <Route path="/signup" element={<Signup />} />
+
+        <Route path="myaccount" element={<MyAccount 
+            setUserIsLoggedIn={setUserIsLoggedIn} />} />
     </Routes>
       
 
