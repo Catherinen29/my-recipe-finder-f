@@ -1,46 +1,36 @@
-import { useState } from "react"
-import { createUser, userLogIn, userLogOut, deleteUser } from "../apis/UserApis"
+import { useEffect, useState } from "react"
+import { userLogIn, userLogOut, 
+    deleteUser, editUser } from "../apis/UserApis"
+    import { Link } from "react-router-dom"
 
-export default function Home () {
+export default function Home ({
+    currentUser, setUserIsLoggedIn, userIsLoggedIn}) {
 
+    useEffect(() => {
+        currentUser()
+    }, [])
 
-    const [newUser, setNewUser] = useState({
-        email:"",
-        firstname:"",
-        lastname:"",
-        password:""
-    })
-
-    const handleNewUserInput = (e) => {
-        setNewUser({...newUser, [e.target.name]: e.target.value})
-    }
-
-    function signup(e) {
-        // console.log(newUser)
-        e.preventDefault()
-        createUser(newUser)
-    }
-
-    const [existingUserData, setExistingUserData] =useState({
-        email:"",
-        password:""
-    })
-    const handleLogInData = (e) => {
-        setExistingUserData({...existingUserData, [e.target.name]: e.target.value})
-    }
-
-    function logUserIn(e) {
-        e.preventDefault()
-        userLogIn(existingUserData)
-    }
+    const userId = localStorage.getItem("currentUserId")
 
     function logOut() {
         // console.log(localStorage.getItem("token"))
         userLogOut()
+        setUserIsLoggedIn(false)
     }
 
     function deleteAccount(e) {
         deleteUser()
+        setUserIsLoggedIn(false)
+    }
+
+    function editAccount(e) {
+        e.preventDefault()
+        editUser()
+    }
+
+    function check(e) {
+        e.preventDefault()
+        console.log(`tHIS IS THE USER id: ${userId}`)
     }
 
     return(
@@ -48,10 +38,41 @@ export default function Home () {
         
         <h1>My recipe finder</h1>
 
-        <h3>Sign up</h3>
-        
-        <form>
-            <label>Email</label>
+    { userIsLoggedIn ? 
+        <h1>You are logged in!</h1> 
+    : null }
+
+        <br/>
+        <br/>
+
+    <Link to="/signup">Sign Up</Link>
+
+        <br/>
+        <br/>
+
+    <Link to="/login">Log In</Link>
+
+        <br/>
+        <br/>
+
+    <button onClick={logOut}>Log out</button>
+
+        <br/>
+        <br/>
+
+    <button onClick={check}>CHECK USER ID</button>
+
+        <br/>
+        <br/>
+
+    <button onClick={deleteAccount}>Delete account</button>
+
+        <br/>
+        <br/>
+
+    <h3>Edit</h3>
+        {/* <form>
+        <label>Email</label>
             <input 
                 name="email"
                 value={newUser.email}
@@ -90,39 +111,9 @@ export default function Home () {
             <br/>
             <br/>
 
-            <button onClick={signup}>Submit</button>
-        </form>
+            <button onClick={editAccount}>Submit</button>
 
-
-    <h3>Log in</h3>
-        <form>
-            <label>Email</label>
-            <input 
-                name="email"
-                value={existingUserData.email}
-                onChange={handleLogInData}
-            />
-
-            <label>Password</label>
-            <input 
-                name="password"
-                value={existingUserData.password}
-                onChange={handleLogInData}
-            />
-        <br/>
-        <button onClick={logUserIn}>Log in</button>
-        </form>
-
-        <br/>
-        <br/>
-
-        <button onClick={logOut}>Log out</button>
-
-        <br/>
-        <br/>
-
-        <button onClick={deleteAccount}>Delete account</button>
-
+        </form> */}
         </>
     )
 }

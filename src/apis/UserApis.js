@@ -54,3 +54,9 @@ export const deleteUser = () => {
     .catch((e) => console.log(`This is the error: ${e}`))
 
 }
+
+export const editUser = () => {
+    const response = axiosInstanceHeader.patch(`/users/${localStorage.getItem("currentUserId")}`)
+    .then((response) => console.log(response))
+    .catch(e => console.log(`This is the error: ${e}`))
+}
