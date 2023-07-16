@@ -1,5 +1,5 @@
 import axios from "axios";
-import axiosInstance from "./AxiosInstance";
+import { axiosInstance, axiosInstanceHeader } from "./AxiosInstance";
 
 export const createUser = (userInfo) => {
 
@@ -37,4 +37,13 @@ export const userLogIn = (userInfo) => {
         })
         
         .catch((e) => console.log(`This is the error: ${e}`))
+}
+
+export const userLogOut = () => {
+    const response = axiosInstanceHeader.delete("/logout", )
+    .then((response) => console.log(response))
+    .catch((e) => console.log(`this is the error: ${e}`))
+
+    localStorage.removeItem("token")
+    localStorage.removeItem("currentUserId")
 }
