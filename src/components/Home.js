@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { createUser } from "../apis/UserApis"
+import { createUser, userLogIn } from "../apis/UserApis"
 
 export default function Home () {
 
@@ -11,14 +11,27 @@ export default function Home () {
         password:""
     })
 
-    const handleInput = (e) => {
+    const handleNewUserInput = (e) => {
         setNewUser({...newUser, [e.target.name]: e.target.value})
     }
 
-    function login(e) {
+    function signup(e) {
         // console.log(newUser)
         e.preventDefault()
         createUser(newUser)
+    }
+
+    const [existingUserData, setExistingUserData] =useState({
+        email:"",
+        password:""
+    })
+    const handleLogInData = (e) => {
+        setExistingUserData({...existingUserData, [e.target.name]: e.target.value})
+    }
+
+    function logUserIn(e) {
+        e.preventDefault()
+        userLogIn(existingUserData)
     }
 
     return(
@@ -26,14 +39,14 @@ export default function Home () {
         
         <h1>My recipe finder</h1>
 
-        <h3>Log in</h3>
+        <h3>Sign up</h3>
         
         <form>
             <label>Email</label>
             <input 
                 name="email"
                 value={newUser.email}
-                onChange={handleInput}
+                onChange={handleNewUserInput}
             />
             
             <br/>
@@ -43,7 +56,7 @@ export default function Home () {
             <input 
                 name="firstname"
                 value={newUser.firstname}
-                onChange={handleInput}
+                onChange={handleNewUserInput}
             />
 
             <br/>
@@ -53,7 +66,7 @@ export default function Home () {
             <input 
                 name="lastname"
                 value={newUser.lastname}
-                onChange={handleInput}
+                onChange={handleNewUserInput}
             />
 
             <br/>
@@ -62,15 +75,34 @@ export default function Home () {
             <input 
                 name="password"
                 value={newUser.password}
-                onChange={handleInput}
+                onChange={handleNewUserInput}
             />
 
             <br/>
             <br/>
 
-            <button onClick={login}>Submit</button>
+            <button onClick={signup}>Submit</button>
         </form>
 
-        </>
+
+    <h3>Log in</h3>
+        <form>
+            <label>Email</label>
+            <input 
+                name="email"
+                value={existingUserData.email}
+                onChange={handleLogInData}
+            />
+
+            <label>Password</label>
+            <input 
+                name="password"
+                value={existingUserData.password}
+                onChange={handleLogInData}
+            />
+        <br/>
+        <button onClick={logUserIn}>Log in</button>
+        </form>
+            </>
     )
 }
