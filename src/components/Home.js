@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { createUser, userLogIn, userLogOut } from "../apis/UserApis"
+import { createUser, userLogIn, userLogOut, deleteUser } from "../apis/UserApis"
 
 export default function Home () {
 
@@ -38,6 +38,11 @@ export default function Home () {
         // console.log(localStorage.getItem("token"))
         userLogOut()
     }
+
+    function deleteAccount(e) {
+        deleteUser()
+    }
+
     return(
         <>
         
@@ -112,6 +117,12 @@ export default function Home () {
         <br/>
 
         <button onClick={logOut}>Log out</button>
-            </>
+
+        <br/>
+        <br/>
+
+        <button onClick={deleteAccount}>Delete account</button>
+
+        </>
     )
 }

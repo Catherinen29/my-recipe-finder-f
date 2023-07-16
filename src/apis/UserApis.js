@@ -40,10 +40,17 @@ export const userLogIn = (userInfo) => {
 }
 
 export const userLogOut = () => {
-    const response = axiosInstanceHeader.delete("/logout", )
+    const response = axiosInstanceHeader.delete("/logout")
     .then((response) => console.log(response))
     .catch((e) => console.log(`this is the error: ${e}`))
 
     localStorage.removeItem("token")
     localStorage.removeItem("currentUserId")
+}
+
+export const deleteUser = () => {
+    const response = axiosInstanceHeader.delete("/signup")
+    .then((response) => console.log(response))
+    .catch((e) => console.log(`This is the error: ${e}`))
+
 }
