@@ -1,7 +1,10 @@
 import { useState } from "react"
 import { userLogIn } from "../apis/UserApis"
+import { useNavigate } from "react-router-dom"
 
 export default function Login({setUserIsLoggedIn}){
+
+    const navigate = useNavigate()
 
     const [existingUserData, setExistingUserData] =useState({
         email:"",
@@ -16,6 +19,7 @@ export default function Login({setUserIsLoggedIn}){
         e.preventDefault()
         userLogIn(existingUserData)
         setUserIsLoggedIn(true)
+        navigate("/")
     }
 
     return(

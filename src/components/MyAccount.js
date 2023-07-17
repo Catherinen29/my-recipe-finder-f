@@ -1,21 +1,15 @@
-import { deleteUser, editUser } from "../apis/UserApis"
+import { Link } from "react-router-dom"
+import { deleteUser, editUser, getUser } from "../apis/UserApis"
 import { useState } from "react"
 
-export default function MyAccount({setUserIsLoggedIn}) {
-
-
+export default function MyAccount({setUserIsLoggedIn, userId}) {
 
     function deleteAccount(e) {
         deleteUser()
         setUserIsLoggedIn(false)
     }
 
-    const [userDetails, setUserDetails] = useState({
-        email:"",
-        firstname:"",
-        lastname:"",
-        password:""
-    })
+    const [userDetails, setUserDetails] = useState({})
 
     const handleUserInput = (e) => {
         setUserDetails({...userDetails, [e.target.name]: e.target.value})
@@ -26,10 +20,26 @@ export default function MyAccount({setUserIsLoggedIn}) {
         editUser()
     }
 
+    // const [currentUserDetails, setCurrentUserDetails] = useState()
+
+    function getCurrentUser() {
+        getUser(userId)
+        .then((response) => console.log(response.data)
+        .catch(e => `This is the error: ${e}`)
+        )
+
+    }
 
     return(
         <>
+        <Link to="/">Home</Link>
+
         <h1>My account</h1>
+
+        <h3>My details</h3>
+        <div>First name: {userDetails.firstname}</div>
+
+        <button onClick={getCurrentUser}>Check</button>
 
         <button onClick={deleteAccount}>Delete account</button>
 
@@ -42,7 +52,7 @@ export default function MyAccount({setUserIsLoggedIn}) {
 <label>Email</label>
     <input 
         name="email"
-        value={newUser.email}
+        // value={newUser.email}
         onChange={handleUserInput}
     />
     
@@ -52,7 +62,7 @@ export default function MyAccount({setUserIsLoggedIn}) {
     <label>First Name</label>
     <input 
         name="firstname"
-        value={newUser.firstname}
+        // value={newUser.firstname}
         onChange={handleUserInput}
     />
 
@@ -62,7 +72,7 @@ export default function MyAccount({setUserIsLoggedIn}) {
     <label>Last Name</label>
     <input 
         name="lastname"
-        value={newUser.lastname}
+        // value={newUser.lastname}
         onChange={handleUserInput}
     />
 
@@ -71,7 +81,7 @@ export default function MyAccount({setUserIsLoggedIn}) {
     <label>Password</label>
     <input 
         name="password"
-        value={newUser.password}
+        // value={newUser.password}
         onChange={handleUserInput}
     />
 

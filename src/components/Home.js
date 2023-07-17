@@ -44,7 +44,8 @@ export default function Home ({
         <br/>
         <br/>
 
-    <Link to="/myaccount">My Account</Link>
+    <Link to="/myaccount"
+        userId={userId}>My Account</Link>
 
         <br/>
         <br/>
