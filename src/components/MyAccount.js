@@ -4,6 +4,7 @@ import { useState } from "react"
 
 export default function MyAccount({setUserIsLoggedIn, userId}) {
 
+    // Function to call the deleteUser function (./UserApis) to delete the user record. 
     function deleteAccount(e) {
         deleteUser()
         setUserIsLoggedIn(false)
@@ -11,10 +12,12 @@ export default function MyAccount({setUserIsLoggedIn, userId}) {
 
     const [userDetails, setUserDetails] = useState({})
 
+    // Set the userDetails to the user's input.
     const handleUserInput = (e) => {
         setUserDetails({...userDetails, [e.target.name]: e.target.value})
     }
 
+    // Function to call the editUser function (./UserApis) to update the user record. 
     function editAccount(e) {
         e.preventDefault()
         editUser()
@@ -22,6 +25,7 @@ export default function MyAccount({setUserIsLoggedIn, userId}) {
 
     // const [currentUserDetails, setCurrentUserDetails] = useState()
 
+    // Function to call the getUser function (./UserApis) to get the current user details. 
     function getCurrentUser() {
         getUser(userId)
         .then((response) => console.log(response.data)

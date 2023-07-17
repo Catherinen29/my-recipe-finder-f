@@ -10,10 +10,12 @@ export default function Signup() {
         password:""
     })
 
+    // Set the newUser state to the user's input. 
     const handleNewUserInput = (e) => {
         setNewUser({...newUser, [e.target.name]: e.target.value})
     }
 
+    // Function which uses newUser state to call the createUser function (./UserApis) to create a user API. 
     function signup(e) {
         // console.log(newUser)
         e.preventDefault()

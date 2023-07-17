@@ -11,10 +11,12 @@ export default function Login({setUserIsLoggedIn}){
         password:""
     })
 
+    // Set the existingUserData state to the user's input. 
     const handleLogInData = (e) => {
         setExistingUserData({...existingUserData, [e.target.name]: e.target.value})
     }
 
+    // Function which uses existingUserData to call the userLogIn function (./UserApis) to create a session. 
     function logUserIn(e) {
         e.preventDefault()
         userLogIn(existingUserData)

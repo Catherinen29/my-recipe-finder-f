@@ -5,12 +5,16 @@ import { userLogIn, userLogOut } from "../apis/UserApis"
 export default function Home ({
     currentUser, setUserIsLoggedIn, userIsLoggedIn}) {
 
+
+    // Call the current user function on page load. 
     useEffect(() => {
         currentUser()
     }, [])
 
+    // Get the current userId from local storage. 
     const userId = localStorage.getItem("currentUserId")
 
+    // A function which calls the function to make the API call to end the session. 
     function logOut() {
         // console.log(localStorage.getItem("token"))
         userLogOut()

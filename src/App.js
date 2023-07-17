@@ -9,8 +9,10 @@ import Signup from './components/Signup';
 
 function App() {
 
-  const [userIsLoggedIn, setUserIsLoggedIn] = useState(false)
+// State which confirms whether user is logged in or not. 
+const [userIsLoggedIn, setUserIsLoggedIn] = useState(false)
 
+// Function which sets userIsLoggedIn state  by accessing local storage.
 const currentUser = () => {
     if (localStorage.getItem("token")) {
         setUserIsLoggedIn(true)
@@ -19,6 +21,7 @@ const currentUser = () => {
 
   return (
     <>
+    {/* Routes to each of the relevant components.  */}
     <Routes>
         <Route path="/" element={<Home 
             currentUser={currentUser}
