@@ -28,10 +28,6 @@ export default function MyAccount({setUserIsLoggedIn, userId}) {
     // Function to call the getUser function (./UserApis) to get the current user details. 
     function getCurrentUser() {
         getUser(userId)
-        .then((response) => console.log(response.data)
-        .catch(e => `This is the error: ${e}`)
-        )
-
     }
 
     return(

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createUser } from "../apis/UserApis";
+import { Link } from "react-router-dom";
 
 export default function Signup() {
 
@@ -24,6 +25,7 @@ export default function Signup() {
 
     return (
     <>
+    <Link to="/">Home</Link>
             <h3>Sign up</h3>
         
         <form>

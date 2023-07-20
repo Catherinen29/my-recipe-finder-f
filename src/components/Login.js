@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { userLogIn } from "../apis/UserApis"
 import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 export default function Login({setUserIsLoggedIn}){
 
@@ -26,6 +27,8 @@ export default function Login({setUserIsLoggedIn}){
 
     return(
 <>
+<Link to="/">Home</Link>
+
     <h3>Log in</h3>
 
     <form>
