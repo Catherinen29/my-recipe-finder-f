@@ -19,7 +19,7 @@ export const axiosInstanceHeader = axios.create({
                 : "http://localhost:4000",
     headers: {
         "Content-Type": "application/json",
-        "Authorization": localStorage.getItem("token")
+        "Authorization": localStorage.getItem("token")  
     }
 })
 
@@ -27,23 +27,9 @@ axiosInstanceHeader.interceptors.request.use(
     function(config) {
         const token = localStorage.getItem("token")
 
-    config.headers.Authorization =  token ? `${token}` : '';
-    return config;
+        if (token) {
+            config.headers.Authorization = token
+        }
+        return config;
     }
 )
-
-
-// const axiosInstanceWithToken = axios.create({
-//     baseURL: process.env.NODE_ENV === 'production' 
-//                 ? 'https://placeholder.com/' 
-//                 : 'http://localhost:4000',
-//     headers: {
-//         'Content-Type': 'application/json'
-//     },
-// });
-
-// axiosInstanceWithToken.interceptors.request.use(function(config) {
-//     const token = window.localStorage.getItem("token");
-//     config.headers.Authorization =  token ? `${token}` : '';
-//     return config;
-// });

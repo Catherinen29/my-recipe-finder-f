@@ -23,8 +23,6 @@ export default function MyAccount({setUserIsLoggedIn, userId}) {
         editUser()
     }
 
-    // const [currentUserDetails, setCurrentUserDetails] = useState()
-
     // Function to call the getUser function (./UserApis) to get the current user details. 
     function getCurrentUser() {
         getUser(userId)

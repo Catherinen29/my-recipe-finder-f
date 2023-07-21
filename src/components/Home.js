@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { userLogIn, userLogOut } from "../apis/UserApis"
     import { Link } from "react-router-dom"
+import SearchRecipes from "./Search"
 
 export default function Home ({
     currentUser, setUserIsLoggedIn, userIsLoggedIn}) {
@@ -31,35 +32,44 @@ export default function Home ({
         
         <h1>My recipe finder</h1>
 
-    { userIsLoggedIn ? 
+    { userIsLoggedIn && 
         <h1>You are logged in!</h1> 
-    : null }
+    }
 
         <br/>
         <br/>
 
-    <Link to="/signup">Sign Up</Link>
+    { !userIsLoggedIn &&
+        <Link to="/signup">Sign Up</Link>
+    }
 
         <br/>
         <br/>
 
-    <Link to="/login">Log In</Link>
-
+    { !userIsLoggedIn &&
+        <Link to="/login">Log In</Link>
+    }
         <br/>
         <br/>
 
-    <Link to="/myaccount"
-        userId={userId}>My Account</Link>
-
+    { userIsLoggedIn && 
+        <Link to="/myaccount"
+            userId={userId}>My Account</Link>
+    }
+        <br/>
+        <br/>
+    
+    { userIsLoggedIn && 
+        <button onClick={logOut}>Log out</button>
+    }
         <br/>
         <br/>
 
-    <button onClick={logOut}>Log out</button>
+    { userIsLoggedIn && 
+        <button onClick={check}>CHECK USER ID</button>
+    }
 
-        <br/>
-        <br/>
-
-    <button onClick={check}>CHECK USER ID</button>
+    <SearchRecipes />
 
         <br/>
         <br/>

@@ -20,7 +20,7 @@ export default function Login({setUserIsLoggedIn}){
     // Function which uses existingUserData to call the userLogIn function (./UserApis) to create a session. 
     function logUserIn(e) {
         e.preventDefault()
-        userLogIn(existingUserData)
+        userLogIn(existingUserData) 
         setUserIsLoggedIn(true)
         navigate("/")
     }

@@ -62,9 +62,13 @@ export const getUser = () => {
 
 // Function to log the user out, and end the session. 
 export const userLogOut = () => {
-    const response = axiosInstanceHeader.delete("/logout")
+    const response = axiosInstance.delete("/logout", {
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": localStorage.getItem("token") }
+    })
     .then((response) => console.log(response))
-    .catch((e) => console.log(`this is the error: ${e}`))
+    // .catch((e) => console.log(`this is the error: ${e}`))
 
     localStorage.removeItem("token")
     localStorage.removeItem("currentUserId")

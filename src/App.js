@@ -4,7 +4,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import MyAccount from './components/MyAccount';
 import { Routes, Route } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Signup from './components/Signup';
 
 function App() {
@@ -18,6 +18,10 @@ const currentUser = () => {
         setUserIsLoggedIn(true)
     }
 }
+
+useEffect(() => {
+  currentUser()
+}, [])
 
   return (
     <>
