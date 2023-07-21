@@ -33,3 +33,10 @@ axiosInstanceHeader.interceptors.request.use(
         return config;
     }
 )
+
+export const axiosAPI = axios.create({
+    baseURL: "https://www.themealdb.com/api/json/v1/1",
+    headers: {
+        "Content-Type": "application/json"
+    }
+})

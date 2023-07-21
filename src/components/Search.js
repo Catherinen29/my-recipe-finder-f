@@ -1,20 +1,10 @@
-import axios from "axios"
+import { axiosAPI } from "../apis/AxiosInstance"
 
 export default function SearchRecipes() {
 
 
-// const apiAxios = axios.create({
-//     baseURL: "www.themealdb.com/api/json/v1/1",
-//     headers: {
-//         "Content-Type": "application/json"
-//     }
-// })
-
 const recipeCategories = () => {
-    const response = axios.get("https://www.themealdb.com/api/json/v1/1/random.php", {
-        headers: {
-            "Content-Type": "application/json" 
-        }})
+    const response = axiosAPI.get("/random.php")
     .then(res => console.log(res.data.meals[0]))
     .catch(e => console.log(`THIS IS THE ERROR: ${e}`))
 }
@@ -26,6 +16,9 @@ const recipeCategories = () => {
 
         <button onClick={recipeCategories}>GIMME</button>
 
+        <div>{}</div>
+
+        <div></div>
         </>
     )
 }
