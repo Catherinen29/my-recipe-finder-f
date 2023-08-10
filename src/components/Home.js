@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
-import { userLogIn, userLogOut } from "../apis/UserApis"
+import { userLogIn, userLogOut, getUser } from "../apis/UserApis"
     import { Link } from "react-router-dom"
 import SearchRecipes from "./Search"
 
 export default function Home ({
     currentUser, setUserIsLoggedIn, userIsLoggedIn}) {
 
+const [userDetails, setUserDetails] = useState({})
 
     // Call the current user function on page load. 
     useEffect(() => {
@@ -22,9 +23,12 @@ export default function Home ({
         setUserIsLoggedIn(false)
     }
 
+    // Get user details
     function check(e) {
         e.preventDefault()
-        console.log(`tHIS IS THE USER id: ${userId}`)
+        getUser()
+        .then(res => setUserDetails(res.id))
+        .catch(e => console.log(`this is the getUser error: `, e))
     }
 
     return(

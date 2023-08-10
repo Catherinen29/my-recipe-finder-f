@@ -52,9 +52,9 @@ export const userLogIn = (userInfo) => {
 }
 
 // Function to return the current user information. 
-export const getUser = () => {
-    const response = axiosInstanceHeader.get(`/users/${localStorage.getItem("currentUserId")})}`)
-    .then((response) => console.log(response.data))
+export const getUser = async () => {
+    const response = await axiosInstanceHeader.get(`/users/${localStorage.getItem("currentUserId")})}`)
+    // .then((response) => console.log(response.data))
     .catch(e => console.log(`This is the error: ${e}`))
 
     return response.data;
