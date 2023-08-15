@@ -23,7 +23,7 @@ const [userDetails, setUserDetails] = useState({})
         setUserIsLoggedIn(false)
     }
 
-    // Get user details
+    // Get user details. Set state. 
     function check(e) {
         e.preventDefault()
         getUser()
